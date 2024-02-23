@@ -42,4 +42,12 @@ public class BlogApiController {
 
         return ResponseEntity.ok().body(new ArticleResponse(article));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable long id) {
+        blogService.delete(id);
+
+        return ResponseEntity.ok()
+                .build();
+    }
 }
