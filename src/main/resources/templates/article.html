@@ -14,6 +14,8 @@
 <div class="container mt-5">
     <div class="row">
         <article>
+            <!-- 블로그 글의 id 추가 -->
+            <input type="hidden" id="article-id" th:value="${article.id}">
             <header class="mb-4">
                 <h1 class="fw-bolder mb-1" th:text="${article.title}"></h1>
                 <!-- 포매팅한 날짜 형식을 || 기호와 함께 텍스트와 붙임 -->
@@ -24,9 +26,10 @@ ${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}|"></div>
                 <p class="fs-5 mb-4" th:text="${article.content}"></p>
             </section>
             <button type="button" class="btn btn-primary btn-sm">수정</button>
-            <button type="button" class="btn btn-secondary btn-sm">삭제</button>
+            <button type="button" id="delete-btn" class="btn btn-secondary btn-sm">삭제</button>
         </article>
     </div>
 </div>
+<script src="/js/article.js"></script>
 </body>
 </html>
