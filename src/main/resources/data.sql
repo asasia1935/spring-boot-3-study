@@ -1,3 +1,3 @@
-INSERT INTO article (title, content) VALUES ('제목 1', '내용 1')
-INSERT INTO article (title, content) VALUES ('제목 2', '내용 2')
-INSERT INTO article (title, content) VALUES ('제목 3', '내용 3')
+INSERT INTO article (title, content, created_at, updated_at) VALUES ('1번 글', '원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 통신·방송의 시설기준과 신문의 기능을 보장하기 위하여 필요한 사항은 법률로 정한다.', NOW(), NOW())
+INSERT INTO article (title, content, created_at, updated_at) VALUES ('2번 글', '국가는 사회보장·사회복지의 증진에 노력할 의무를 진다. 제2항과 제3항의 처분에 대하여는 법원에 제소할 수 없다. 국회는 국정을 감사하거나 특정한 국정사안에 대하여 조사할 수 있으며, 이에 필요한 서류의 제출 또는 증인의 출석과 증언이나 의견의 진술을 요구할 수 있다.', NOW(), NOW())
+INSERT INTO article (title, content, created_at, updated_at) VALUES ('3번 글', '대통령은 국가의 안위에 관계되는 중대한 교전상태에 있어서 국가를 보위하기 위하여 긴급한 조치가 필요하고 국회의 집회가 불가능한 때에 한하여 법률의 효력을 가지는 명령을 발할 수 있다.', NOW(), NOW())
