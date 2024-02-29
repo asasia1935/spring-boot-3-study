@@ -2,8 +2,10 @@ package com.example.springbootdeveloper.config;
 
 import com.example.springbootdeveloper.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -56,14 +58,40 @@ public class WebSecurityConfig {
 
     // 인증 관리자 관련 설정 -> 사용자 정보를 가져올 서비스 재정의 및 인증 방법 ex) LDAP, JDBC 기반 인증 설정할때 사용
     // .and()가 deprecated여서 수정
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationManagerBuilder auth,
+//                                                       BCryptPasswordEncoder bCryptPasswordEncoder,
+//                                                       UserDetailService userDetailService) throws Exception {
+//        auth
+//                .userDetailsService(userDetailService)
+//                .passwordEncoder(bCryptPasswordEncoder);
+//        return auth.build();
+//    }
+
+//    @Autowired
+//    private AuthenticationManagerBuilder auth;
+//
+//    @Autowired
+//    public void configureGlobal(@Lazy BCryptPasswordEncoder bCryptPasswordEncoder,
+//                                UserDetailService userDetailService) throws Exception {
+//        auth
+//                .userDetailsService(userDetailService)
+//                .passwordEncoder(bCryptPasswordEncoder);
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authenticationManagerBean() throws Exception {
+//        return auth.build();
+//    }
+
+    // 문제 해결을 하지 못해서 일단 원래 코드로 복구
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationManagerBuilder auth,
-                                                       BCryptPasswordEncoder bCryptPasswordEncoder,
-                                                       UserDetailService userDetailService) throws Exception {
-        auth
+    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailService userDetailService) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailService)
-                .passwordEncoder(bCryptPasswordEncoder);
-        return auth.build();
+                .passwordEncoder(bCryptPasswordEncoder)
+                .and()
+                .build();
     }
 
     // 패스워드 인코더를 빈으로 설정
