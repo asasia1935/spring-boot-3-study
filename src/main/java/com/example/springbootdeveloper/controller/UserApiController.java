@@ -22,4 +22,11 @@ public class UserApiController {
         userService.save(request);
         return "redirect:/login"; // 회원가입 완료 후에 로그인 페이지로 리다이렉트
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        new SecurityContextLogoutHandler().logout(request, response,
+                SecurityContextHolder.getContext().getAuthentication());
+        return "redirect:/login";
+    }
 }
